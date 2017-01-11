@@ -1,1 +1,1 @@
-long errno = 0;
+unsigned long errno = 0;

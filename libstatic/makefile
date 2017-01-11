@@ -12,10 +12,10 @@ libstatic.a: $(OBJS)
 	ar rcs libstatic.a $(OBJS)
 
 linux_close.o: linux_close.c libstatic.h
-linux_exit.o: linux_exit.c libstatic.h
+linux_exit.o: linux_exit.s
 linux_open.o: linux_open.c libstatic.h
-linux_read.o: linux_read.c libstatic.h
-linux_write.o: linux_write.c libstatic.h
+linux_read.o: linux_read.s
+linux_write.o: linux_write.s
 linux_stat.o: linux_stat.c libstatic.h
 linux_sbrk.o: linux_sbrk.c libstatic.h
 linux_mmap.o: linux_mmap.c 
