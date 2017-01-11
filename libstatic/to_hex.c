@@ -7,7 +7,7 @@ to_hex(char *p, unsigned long n)
 	int i;
 	for (i = 0; i < 16; ++i)
 	{
-		char x = ((n >> 60)  & 0xf);
+		char x = ((n >> 30)  & 0xf);
 		if (x < (char)10)
 			*p++ = x + '0';
 		else

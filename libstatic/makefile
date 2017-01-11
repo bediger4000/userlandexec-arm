@@ -13,7 +13,7 @@ libstatic.a: $(OBJS)
 
 linux_close.o: linux_close.c libstatic.h
 linux_exit.o: linux_exit.s
-linux_open.o: linux_open.c libstatic.h
+linux_open.o: linux_open.s
 linux_read.o: linux_read.s
 linux_write.o: linux_write.s
 linux_stat.o: linux_stat.c libstatic.h

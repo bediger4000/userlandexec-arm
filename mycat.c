@@ -1,5 +1,4 @@
 #include <libstatic/libstatic.h>
-#include <libstatic/crt.h>
 #define BUFSIZ 1024
 void
 c_main(int ac, char **av, char **envp)

@@ -41,7 +41,8 @@ to_decimal(unsigned long x, char *p)
 	else {
 		unsigned long q, r, b;
 		int f = 0;
-		b = 10000000000000000000U;
+		/* b = 10000000000000000000U; */
+		b = 1000000000U;
 
 		do {
 			q = x/b;
@@ -69,7 +70,7 @@ to_hex(unsigned long n, char *p)
 	int count = 0;
 	for (i = 0; i < 16; ++i)
 	{
-		char x = ((n >> 60)  & 0xf);
+		char x = ((n >> 30)  & 0xf);
 		if (x < (char)10)
 			*p++ = x + '0';
 		else

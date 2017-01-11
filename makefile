@@ -4,10 +4,10 @@ CFLAGS = -I. -g -Wall -Wextra -std=gnu99 -nostdlib -fPIC
 all: dyn_unmap_run hw env_test margs args2 elfauxv elfauxv_dynamic \
 	example ulexec.so mycat
 
-mycat: mycat.c libstatic/libstatic.h libstatic/crt.h libstatic/libstatic.a
+mycat: mycat.c libstatic/libstatic.h libstatic/crt.o libstatic/libstatic.a
 	gcc -I. -g -Wall -std=gnu99 -nostdlib -c  mycat.c
 	gcc -I. -g -std=gnu99 -nostdlib \
-		mycat.o -o mycat  -Llibstatic -lstatic
+		libstatic/crt.o mycat.o -o mycat  -Llibstatic -lstatic
 
 dyn_unmap_run: dyn_unmap_run.c load_elf.o map_file.o stack_fix.o ulexec.h libstatic/libstatic.h libstatic/crt.h libstatic/libstatic.a
 	gcc -I. -g -Wall -std=gnu99 -nostdlib -fPIC   -c  dyn_unmap_run.c
