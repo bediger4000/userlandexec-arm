@@ -1,8 +1,8 @@
-.globl linux_open
-.type linux_open, %function
-linux_open:
+.globl linux_close
+.type linux_close, %function
+linux_close:
 push    {%r7}
-mov     %r7, $5
+mov     %r7, $6
 swi     $0
 pop     {%r7}
 cmn     %r0, $4096

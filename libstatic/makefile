@@ -6,12 +6,13 @@ OBJS = linux_close.o linux_exit.o linux_open.o linux_read.o linux_write.o \
 	print.o errno.o strtoul.o file_size.o string.o linux_mprotect.o \
 	linux_sbrk.o
 
-all: libstatic.a
+all: crt.o libstatic.a
 
 libstatic.a: $(OBJS)
 	ar rcs libstatic.a $(OBJS)
 
-linux_close.o: linux_close.c libstatic.h
+crt.o: crt.c
+linux_close.o: linux_close.s
 linux_exit.o: linux_exit.s
 linux_open.o: linux_open.s
 linux_read.o: linux_read.s

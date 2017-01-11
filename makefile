@@ -8,6 +8,10 @@ mycat: mycat.c libstatic/libstatic.h libstatic/crt.o libstatic/libstatic.a
 	gcc -I. -g -Wall -std=gnu99 -nostdlib -c  mycat.c
 	gcc -I. -g -std=gnu99 -nostdlib \
 		libstatic/crt.o mycat.o -o mycat  -Llibstatic -lstatic
+oc: oc.c libstatic/libstatic.h libstatic/crt.o libstatic/libstatic.a
+	gcc -I. -g -Wall -std=gnu99 -nostdlib -c  oc.c
+	gcc -I. -g -std=gnu99 -nostdlib \
+		libstatic/crt.o oc.o -o oc  -Llibstatic -lstatic
 
 dyn_unmap_run: dyn_unmap_run.c load_elf.o map_file.o stack_fix.o ulexec.h libstatic/libstatic.h libstatic/crt.h libstatic/libstatic.a
 	gcc -I. -g -Wall -std=gnu99 -nostdlib -fPIC   -c  dyn_unmap_run.c
@@ -32,9 +36,9 @@ places: places.o libstatic/libstatic.a
 		-Llibstatic -lstatic
 	chmod ugo-x places
 
-margs: margs.o libstatic/libstatic.a
+margs: margs.o libstatic/crt.o libstatic/libstatic.a
 	gcc -g -I. -std=gnu99 -nostdlib -fPIC \
-		margs.o -o margs \
+		libstatic/crt.o margs.o -o margs \
 		-Llibstatic -lstatic
 	chmod ugo-x margs
 

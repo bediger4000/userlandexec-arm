@@ -1,7 +1,5 @@
 #include <libstatic/libstatic.h>
 
-#include <libstatic/crt.h>
-
 void c_main(int ac, char **av, char **env)
 {
 	int i;
