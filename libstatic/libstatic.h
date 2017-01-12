@@ -17,9 +17,12 @@ void *linux_mmap(void *start, unsigned long length, int prot, int flags, int fd,
 unsigned long int strtoul(const char *nptr, char **endptr, int base);
 int linux_munmap(void *start, unsigned long length);
 int linux_mprotect(void *addr, unsigned long len, int prot);
-unsigned long file_size(char *filename);
+int file_size(char *filename);
 int linux_getpagesize(void);
 void linux_brk(unsigned long addr);
+int idiv0(long numerator, long denominator);
+unsigned long unsigned_naive_div(unsigned long numerator, unsigned long denominator);
+unsigned long unsigned_naive_mod(unsigned long number, unsigned long modulus);
 
 
 unsigned long strlen(const char *s);

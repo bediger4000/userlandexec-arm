@@ -1,6 +1,6 @@
 #include <libstatic.h>
 
-unsigned long
+int
 file_size(char *filename)
 {
 	char sbuf[144];
@@ -12,7 +12,7 @@ file_size(char *filename)
 		print_long(2, errno);
 		print_string(2, "\n");
 	} else {
-		ret = *(unsigned long *)(sbuf+48);
+		ret = *(long *)(sbuf+20);
 	}
 
 	return ret;
