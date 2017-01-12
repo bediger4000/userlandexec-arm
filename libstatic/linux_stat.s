@@ -4,7 +4,7 @@
 .type linux_stat, %function
 linux_stat:
 push    {%r7}
-mov     %r7, $86
+mov     %r7, $106
 swi     $0
 pop     {%r7}
 cmn     %r0, $4096
