@@ -10,7 +10,7 @@ int types[] = {
 	AT_BASE, AT_CLKTCK, AT_DCACHEBSIZE, AT_EGID, AT_ENTRY, AT_EXECFD, AT_EXECFN,
 	AT_GID, AT_HWCAP, AT_HWCAP2, AT_ICACHEBSIZE, AT_PAGESZ, AT_PHDR,
 	AT_PHENT, AT_PHNUM, AT_RANDOM, AT_SECURE, AT_SYSINFO, AT_SYSINFO_EHDR,
-	AT_UCACHEBSIZE, AT_UID
+	AT_UCACHEBSIZE, AT_UID, AT_BASE_PLATFORM, AT_PLATFORM
 
 };
 
@@ -27,7 +27,7 @@ main(int ac, char **av)
 		unsigned long val = getauxval(types[i]);
 		if (0 != val)
 		{
-			printf("%d\t%s\t0x%lx\t%ld\n", i, printable_aux_type(types[i]), val, val);
+			printf("%d\t%d - %s\t0x%lx\t%ld\n", i, types[i], printable_aux_type(types[i]), val, val);
 			switch (types[i])
 			{
 			case AT_EXECFN:
