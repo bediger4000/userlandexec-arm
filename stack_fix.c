@@ -63,7 +63,7 @@ save_elfauxv(char **envp)
 	struct saved_block *r;
 	unsigned long *p;
 	int cnt;
-	Elf64_auxv_t *q;
+	Elf32_auxv_t *q;
 
 	p = (unsigned long *)envp;
 	while (*p != 0)
@@ -71,7 +71,7 @@ save_elfauxv(char **envp)
 
 	++p; /* skip null word after env */
 
-	for (cnt = 0, q = (Elf64_auxv_t *)p; q->a_type != AT_NULL; ++q)
+	for (cnt = 0, q = (Elf32_auxv_t *)p; q->a_type != AT_NULL; ++q)
 		++cnt;
 
 	++cnt; /* The AT_NULL final entry */
@@ -91,11 +91,11 @@ stack_setup(
 	struct saved_block *args,
 	struct saved_block *envp,
     struct saved_block *auxvp,
-	Elf64_Ehdr *ehdr,
-	Elf64_Ehdr *ldso
+	Elf32_Ehdr *ehdr,
+	Elf32_Ehdr *ldso
 )
 {
-	Elf64_auxv_t	*aux, *excfn = NULL;
+	Elf32_auxv_t	*aux, *excfn = NULL;
 	char **av, **ev;
 	char	*addr, *str, *rsp;
 	unsigned long *ptr;
@@ -122,7 +122,7 @@ stack_setup(
 	ptr += envp->cnt;  /* skip over envp[] */
 	*ptr++ = 0;
 
-	aux = (Elf64_auxv_t *)ptr;
+	aux = (Elf32_auxv_t *)ptr;
 
 	ptr = (unsigned long *)ROUNDUP((unsigned long)ptr + auxvp->size, sizeof(unsigned long));
 	

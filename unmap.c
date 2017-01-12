@@ -30,7 +30,7 @@ unmap(char *progname)
 				 * of glibc without ill effects, so you don't really have to
 				 * munmap() anything other than the program calling ul_exec() */
 				if (strstr(buf, progname) || strstr(buf, "libdl") || strstr(buf, "/usr/lib/ld-")
-					|| strstr(buf, "/lib64/ld-") || strstr(buf, "libc"))
+					|| strstr(buf, "/lib64/ld-") || strstr(buf, "libc") || strstr(buf, "libgcc"))
 				{
 					char *u;
 					char *first, *second;

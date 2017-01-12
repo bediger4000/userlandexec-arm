@@ -1,7 +1,7 @@
 void *map_file(char *filename);
 void error_msg(char *msg);
 void print_address(char *phrase, void *address);
-void *load_elf(char *mapped, int anywhere, Elf64_Ehdr **elf, Elf64_Ehdr **ldso);
+void *load_elf(char *mapped, int anywhere, Elf32_Ehdr **elf, Elf32_Ehdr **ldso);
 void unmap(char *progname);
 void copy_in(char *progname, void *address);
 
@@ -22,8 +22,8 @@ void *stack_setup(
     struct saved_block *args,
     struct saved_block *envp,
     struct saved_block *auxvp,
-    Elf64_Ehdr *ehdr,
-    Elf64_Ehdr *ldso
+    Elf32_Ehdr *ehdr,
+    Elf32_Ehdr *ldso
 );
 
 

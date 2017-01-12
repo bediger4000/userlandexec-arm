@@ -30,8 +30,8 @@ ulexec(int ac, char **av, char **env)
 	void *mapped;
 	void *entry_point;
 	struct stat sb;
-	Elf64_Ehdr *elf_ehdr, *ldso_ehdr;
-	Elf64_Phdr *phdr;
+	Elf32_Ehdr *elf_ehdr, *ldso_ehdr;
+	Elf32_Phdr *phdr;
 	struct saved_block *argvb, *envb, *elfauxvb;
 	int trim_args, i;
 	void *stack_bottom;
@@ -45,9 +45,9 @@ ulexec(int ac, char **av, char **env)
 		unmap(file_to_unmap);
 
 	mapped = map_file(file_to_map);
-	elf_ehdr = (Elf64_Ehdr *)mapped;
+	elf_ehdr = (Elf32_Ehdr *)mapped;
 
-	phdr = (Elf64_Phdr *)((unsigned long)elf_ehdr + elf_ehdr->e_phoff);
+	phdr = (Elf32_Phdr *)((unsigned long)elf_ehdr + elf_ehdr->e_phoff);
 
 	for (i = 0; i < elf_ehdr->e_phnum; ++i)
 		if (phdr[i].p_type == PT_LOAD && phdr[i].p_vaddr == 0)
