@@ -43,10 +43,10 @@ margs: margs.o libstatic/crt.o libstatic/libstatic.a
 		-Llibstatic -lstatic
 	chmod ugo-x margs
 
-hw: hw.c libstatic/libstatic.a libstatic/crt.h
+hw: hw.c libstatic/libstatic.a libstatic/crt.o
 	gcc -I. -g -Wall -std=gnu99 -nostdlib -fPIC   -c hw.c
 	gcc -I. -g -std=gnu99 -nostdlib \
-		hw.o -o hw -Llibstatic -lstatic
+		libstatic/crt.o hw.o -o hw -Llibstatic -lstatic
 	chmod ugo-x hw
 
 raw: raw.c libstatic/libstatic.a 
