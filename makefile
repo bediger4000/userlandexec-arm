@@ -14,6 +14,11 @@ stt: stt.c libstatic/libstatic.h libstatic/crt.o
 	gcc -I. -g -std=gnu99 -nostdlib \
 		-o stt libstatic/crt.o stt.o   -Llibstatic -lstatic
 
+allargs: allargs.c libstatic/libstatic.h libstatic/crt.o
+	gcc -I. -g -Wall -std=gnu99 -nostdlib -c  allargs.c
+	gcc -I. -g -std=gnu99 -nostdlib \
+		-o allargs libstatic/crt.o allargs.o   -Llibstatic -lstatic
+
 dyn_unmap_run: dyn_unmap_run.c load_elf.o map_file.o stack_fix.o ulexec.h libstatic/libstatic.h libstatic/crt.h libstatic/libstatic.a
 	gcc -I. -g -Wall -std=gnu99 -nostdlib -fPIC   -c  dyn_unmap_run.c
 	gcc -I. -g -std=gnu99 -nostdlib \
@@ -25,11 +30,10 @@ ulexec.so: ulexec.c load_elf.o map_file.o stack_fix.o ulexec.h  unmap.o \
 	gcc -fPIC -shared -I. -g -std=gnu99 -nostdlib \
 		ulexec.o load_elf.o map_file.o unmap.o stack_fix.o -o ulexec.so -Llibstatic -lstatic
 
-env_test: env_test.o libstatic/libstatic.a
+env_test: env_test.o libstatic/libstatic.a libstatic/crt.o
 	gcc -g -I. -std=gnu99 -nostdlib -fPIC \
-		env_test.o -o env_test \
+		libstatic/crt.o env_test.o -o env_test \
 		-Llibstatic -lstatic
-	chmod ugo-x env_test
 
 places: places.o libstatic/libstatic.a
 	gcc -g -I. -std=gnu99 -nostdlib -fPIC \
@@ -65,9 +69,9 @@ global2: global2.c libstatic/libstatic.a libstatic/crt.h
 		global2.o -o global2 -Llibstatic -lstatic
 	chmod ugo-x global2
 
-elfauxv: elfauxv.o libstatic/libstatic.a
+elfauxv: elfauxv.o libstatic/libstatic.a libstatic/crt.o
 	gcc -I. -g -std=gnu99 -nostdlib \
-		elfauxv.o -o elfauxv -Llibstatic -lstatic
+		libstatic/crt.o elfauxv.o -o elfauxv -Llibstatic -lstatic
 	chmod ugo-x elfauxv
 
 args2: args2.c
