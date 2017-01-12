@@ -1,12 +1,8 @@
-/* $Id: elfauxv.c,v 1.2 2014/02/12 17:48:03 bediger Exp $ */
 #include <libstatic/libstatic.h>
 #include <elf.h>
 
-#include <libstatic/crt.h>
-
-typedef unsigned long uint64_t;
 #define BUFSIZ 1024
-char *printable_aux_type(uint64_t a_val);
+char *printable_aux_type(long a_val);
 
 void
 print_data(
@@ -34,7 +30,7 @@ print_data(
 }
 
 char *
-printable_aux_type(uint64_t a_val)
+printable_aux_type(long a_val)
 {
 	char *r = "Unknown";
 	switch (a_val)
