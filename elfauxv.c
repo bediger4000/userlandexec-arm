@@ -53,6 +53,7 @@ printable_aux_type(long a_val)
 	case AT_CLKTCK:     r = "Frequency of times()"; break;
 	case AT_PLATFORM:     r = "String identifying platform. "; break;
 	case AT_HWCAP:     r = "Machine dependent hints about processor capabilities. "; break;
+	case AT_HWCAP2:     r = "More machine dependent hints about processor capabilities. "; break;
 	case AT_FPUCW:     r = "Used FPU control word. "; break;
 	case AT_DCACHEBSIZE:     r = "Data cache block size. "; break;
 	case AT_ICACHEBSIZE:     r = "Instruction cache block size. "; break;
@@ -98,8 +99,8 @@ void
 c_main(int ac, char **av, char **envp)
 {
 	int i;
-	unsigned long *p;
-	Elf64_auxv_t *auxvp;
+	unsigned int *p;
+	Elf32_auxv_t *auxvp;
 
 	print_maps();
 
@@ -115,7 +116,7 @@ c_main(int ac, char **av, char **envp)
 	print_hex(1, (unsigned long)envp[0]);
 	print_string(1, "\n");
 
-	p = (unsigned long *)&envp[0];
+	p = (unsigned int *)&envp[0];
 
 	while (*p != 0)
 		++p;
@@ -126,7 +127,7 @@ c_main(int ac, char **av, char **envp)
 
 
 	for (i = 0,
-		auxvp = (Elf64_auxv_t *)(p + 1);
+		auxvp = (Elf32_auxv_t *)(p + 1);
 		auxvp->a_type != AT_NULL;
 		++auxvp, ++i
 	) {
