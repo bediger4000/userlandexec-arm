@@ -30,6 +30,9 @@ env_test: env_test.o libstatic/libstatic.a libstatic/crt.o
 		libstatic/crt.o env_test.o -o env_test \
 		-Llibstatic -lstatic
 
+errno_set: errno_set.c set_errno.s
+	cc -g -Wall -Wextra -o errno_set errno_set.c set_errno.s
+
 margs: margs.o libstatic/crt.o libstatic/libstatic.a
 	gcc -g -I. -std=gnu99 -nostdlib -fPIC \
 		libstatic/crt.o margs.o -o margs \
@@ -77,5 +80,5 @@ stack_fix.o: stack_fix.c ulexec.h libstatic/libstatic.h
 clean:
 	-rm -rf *.o *.a *core 
 	-rm -rf margs hw args2 env_test dyn_unmap_run mycat stt getaux
-	-rm -rf elfauxv elfauxv_dynamic hw example ulexec.so
+	-rm -rf elfauxv elfauxv_dynamic hw example ulexec.so errno_set
 	cd libstatic; make clean

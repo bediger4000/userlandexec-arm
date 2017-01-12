@@ -19,6 +19,16 @@ done that, you can try it out:
 
 `./example  ./ulexec.so  /usr/bin/cat /proc/self/maps`
 
+### Test Programs
+
+Show the ELF auxiliary vectors:
+
+    $ LD_SHOW_AUXV=1 ./getaux
+    $ ./elfauxv
+
+The first program uses glibc extension `getauxval(3)`, and has dynmaic linker
+also dump out the auxiliary vectors, for your inspection.
+
 ### Fun
 
 `./example  ./ulexec.so  `./example  ./ulexec.so  `./example  ./ulexec.so  /usr/bin/cat /proc/self/maps`
