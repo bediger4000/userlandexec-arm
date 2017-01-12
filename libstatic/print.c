@@ -45,15 +45,15 @@ to_decimal(unsigned long x, char *p)
 		b = 1000000000U;
 
 		do {
-			q = x/b;
+			q = unsigned_naive_div(x,b);
 			if (q || f)
 			{
 				*p++ = ('0' + q);
 				++count;
 				f = 1;
-				x = x%b;
+				x = unsigned_naive_mod(x, b);
 			}
-			b /= 10;
+			b = unsigned_naive_div(b, 10);
 		} while (b > 0);
 
 	}
@@ -68,9 +68,9 @@ to_hex(unsigned long n, char *p)
 {
 	int i;
 	int count = 0;
-	for (i = 0; i < 16; ++i)
+	for (i = 0; i < 8; ++i)
 	{
-		char x = ((n >> 30)  & 0xf);
+		char x = ((n >> 28)  & 0xf);
 		if (x < (char)10)
 			*p++ = x + '0';
 		else
