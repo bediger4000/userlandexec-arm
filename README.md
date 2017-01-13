@@ -10,7 +10,8 @@ For starters, the userland exec unmaps the currently-executing ELF file,
 so as to be able to put the new ELF file's contents in the right place
 in memory.
 
-This code works with 32-bit Rasberry Pi Linux ELF files, compiled with GCC and linked against glibc.
+This code works with 32-bit Rasberry Pi 2 Linux ELF files, compiled with
+GCC and linked against glibc.
 
 ### Building
 
@@ -26,8 +27,8 @@ Show the ELF auxiliary vectors:
     $ LD_SHOW_AUXV=1 ./getaux
     $ ./elfauxv
 
-The first program uses glibc extension `getauxval(3)`, and has dynmaic linker
-also dump out the auxiliary vectors, for your inspection.
+The first program uses glibc extension `getauxval(3)`, and has the dynamic linker
+dump out the auxiliary vectors, for your inspection.
 
 ### Fun
 
