@@ -14,6 +14,11 @@ stt: stt.c libstatic/libstatic.h libstatic/crt.o
 	gcc -I. -g -std=gnu99 -nostdlib \
 		-o stt libstatic/crt.o stt.o   -Llibstatic -lstatic
 
+oc: oc.c libstatic/libstatic.h libstatic/crt.o
+	gcc -I. -g -Wall -std=gnu99 -nostdlib -c  oc.c
+	gcc -I. -g -std=gnu99 -nostdlib \
+		-o oc libstatic/crt.o oc.o   -Llibstatic -lstatic
+
 dyn_unmap_run: dyn_unmap_run.c load_elf.o map_file.o stack_fix.o ulexec.h libstatic/libstatic.h libstatic/crt.o libstatic/libstatic.a
 	gcc -I. -g -Wall -std=gnu99 -nostdlib -fPIC   -c  dyn_unmap_run.c
 	gcc -I. -g -std=gnu99 -nostdlib \
