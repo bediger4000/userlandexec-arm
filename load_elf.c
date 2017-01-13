@@ -11,10 +11,10 @@
 void *memcopy(void *dest, const void *src, unsigned long n);
 
 void *
-load_elf(char *mapped, int anywhere, Elf64_Ehdr **elf_ehdr, Elf64_Ehdr **ldso_ehdr)
+load_elf(char *mapped, int anywhere, Elf32_Ehdr **elf_ehdr, Elf32_Ehdr **ldso_ehdr)
 {
-	Elf64_Ehdr *hdr;
-	Elf64_Phdr *pdr, *interp = NULL;
+	Elf32_Ehdr *hdr;
+	Elf32_Phdr *pdr, *interp = NULL;
 	int i;
 	void *text_segment = NULL;
 	void *entry_point = NULL;
@@ -27,8 +27,8 @@ load_elf(char *mapped, int anywhere, Elf64_Ehdr **elf_ehdr, Elf64_Ehdr **ldso_eh
 		mapflags |= MAP_FIXED;
 
 	/* Just addresses in mapped-in file. */
-	hdr = (Elf64_Ehdr *)mapped;
-	pdr = (Elf64_Phdr *)(mapped + hdr->e_phoff);
+	hdr = (Elf32_Ehdr *)mapped;
+	pdr = (Elf32_Phdr *)(mapped + hdr->e_phoff);
 
 	entry_point = (void *)hdr->e_entry;
 
@@ -121,7 +121,7 @@ load_elf(char *mapped, int anywhere, Elf64_Ehdr **elf_ehdr, Elf64_Ehdr **ldso_eh
 
 	if (interp)
 	{
-		Elf64_Ehdr *junk_ehdr = NULL;
+		Elf32_Ehdr *junk_ehdr = NULL;
 		entry_point = load_elf(map_file(&(((char *)mapped)[interp->p_offset])), 1, ldso_ehdr, &junk_ehdr);
 	}
 
