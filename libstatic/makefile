@@ -11,7 +11,7 @@ all: crt.o libstatic.a
 libstatic.a: $(OBJS)
 	ar rcs libstatic.a $(OBJS)
 
-crt.o: crt.c
+crt.o: crt.s
 linux_close.o: linux_close.s
 linux_exit.o: linux_exit.s
 linux_open.o: linux_open.s
