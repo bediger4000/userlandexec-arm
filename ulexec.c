@@ -6,8 +6,8 @@
 
 #include <ulexec.h>
 
-#define JMP_ADDR(x) asm("\tjmp  *%0\n" :: "r" (x))
-#define SET_STACK(x) asm("\tmovq %0, %%rsp\n" :: "r"(x))
+#define JMP_ADDR(x) asm("\tb  %0\n" :: "r" (x))
+#define SET_STACK(x) asm("\tmov %%sp, %0\n" :: "r"(x))
 
 void
 print_maps(void)
