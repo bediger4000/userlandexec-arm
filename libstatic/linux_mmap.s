@@ -2,7 +2,7 @@
 .type linux_mmap, %function
 linux_mmap:
 push    {%r7}
-mov     %r7, $90
+mov     %r7, $192
 swi     $0
 pop     {%r7}
 cmn     %r0, $4096
