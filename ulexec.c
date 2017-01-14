@@ -6,7 +6,7 @@
 
 #include <ulexec.h>
 
-#define JMP_ADDR(x) asm("\tb  %0\n" :: "r" (x))
+#define JMP_ADDR(x) asm("\tbx  %0\n" :: "r" (x))
 #define SET_STACK(x) asm("\tmov %%sp, %0\n" :: "r"(x))
 
 void
