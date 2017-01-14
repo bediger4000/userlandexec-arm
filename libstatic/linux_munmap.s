@@ -2,7 +2,7 @@
 .type linux_munmap, %function
 linux_munmap:
 push    {%r7}
-mov     %r7, $92
+mov     %r7, $91
 swi     $0
 pop     {%r7}
 cmn     %r0, $4096
