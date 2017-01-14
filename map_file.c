@@ -9,16 +9,19 @@
 void *
 map_file(char *file_to_map)
 {
-	struct stat sb;
 	void *mapped;
+	int sz;
 
-	if (0 > linux_stat(file_to_map, &sb))
+	if (0 > (sz = file_size(file_to_map)))
 	{
 		error_msg("map_file stat() failed ");
 		linux_exit(1);
 	}
+	print_string(1, "linux_stat file size ");
+	print_long(1, sz);
+	print_string(1, "\n");
 
-	mapped = linux_mmap(NULL, sb.st_size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
+	mapped = linux_mmap(NULL, sz, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
 
 	if (mapped == (void *)-1)
 	{
