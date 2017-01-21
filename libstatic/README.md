@@ -23,7 +23,7 @@ indicate what problem the Linux kernel had with your system call's inputs.
 The file `crt.s` sets the traditional `argc`, `argv` and `envp` variables
 that a C program starts with.
 
-There's a few utility routines like `memcpy()`, `strlen()`, 'strchr()`
+There's a few utility routines like `memcpy()`, `strlen()`, `strchr()`,
 `strcat()` and `strstr()`. A few very simple output functions exist.
 
 These system calls allow the userland exec to do its work. They're written
