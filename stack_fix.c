@@ -85,7 +85,7 @@ save_elfauxv(char **envp)
 	return r;
 }
 
-/* Returns value for %rsp, the new "bottom of the stack */
+/* Returns value for %sp, the new "bottom of the stack */
 void *
 stack_setup(
 	struct saved_block *args,
