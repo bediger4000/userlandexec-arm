@@ -24,8 +24,8 @@ print_maps(void)
 void
 ulexec(int ac, char **av, char **env)
 {
-	char *file_to_map = av[3];
-	char *file_to_unmap = av[2];
+	char *file_to_map;
+	char *file_to_unmap;
 	int how_to_map = 0;
 	void *mapped;
 	void *entry_point;
@@ -58,7 +58,7 @@ ulexec(int ac, char **av, char **env)
 
 	entry_point = load_elf(mapped, how_to_map, &elf_ehdr, &ldso_ehdr);
 
-	linux_munmap(mapped, sb.st_size);
+	linux_munmap(mapped, sb.st_size); /* XXX - sb uninitialized, sb.st_size holds garbage */
 
 	argvb = save_argv(ac - trim_args, &av[trim_args]);
 	envb = save_argv(0, env);
