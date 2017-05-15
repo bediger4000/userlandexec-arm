@@ -24,6 +24,25 @@ char *strchr(const char *s, int c)
 }
 
 char *
+strrchr(const char *s, int c)
+{
+	char *r = NULL;
+	char *p;
+
+	p = &s[strlen(s)-1];
+
+	for (; p != s; --p)
+	{
+		if (*p == c)
+		{
+			r = (char *)p;
+			break;
+		}
+	}
+	return r;
+}
+
+char *
 strcat(char *dest, const char *src)
 {
 	if (dest && src)

@@ -27,6 +27,7 @@ unsigned long unsigned_naive_mod(unsigned long number, unsigned long modulus);
 
 unsigned long strlen(const char *s);
 char *strchr(const char *s, int c);
+char *strrchr(const char *s, int c);
 char *strstr(const char *str, char *substr);
 void *memcpy(void *dest, const void *src, unsigned long n);
 char *strcat(char *dest, const char *src);
