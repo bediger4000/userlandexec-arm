@@ -7,18 +7,20 @@
 #include <ulexec.h>
 
 void *
-map_file(char *file_to_map)
+map_file(char *file_to_map, unsigned long *sz)
 {
+	struct stat sb;
 	void *mapped;
-	int sz;
 
-	if (0 > (sz = file_size(file_to_map)))
+	if (0 > linux_stat(file_to_map, &sb))
 	{
 		error_msg("map_file stat() failed ");
 		linux_exit(1);
 	}
 
-	mapped = linux_mmap(NULL, sz, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
+	*sz = sb.st_size;
+
+	mapped = linux_mmap(NULL, sb.st_size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
 
 	if (mapped == (void *)-1)
 	{
