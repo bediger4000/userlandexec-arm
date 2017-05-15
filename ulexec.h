@@ -1,4 +1,4 @@
-void *map_file(char *filename);
+void *map_file(char *filename, unsigned long *sz);
 void error_msg(char *msg);
 void print_address(char *phrase, void *address);
 void *load_elf(char *mapped, int anywhere, Elf32_Ehdr **elf, Elf32_Ehdr **ldso);
